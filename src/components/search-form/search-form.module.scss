@@ -1,0 +1,25 @@
+.form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.field {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: #8c8988;
+  box-sizing: border-box;
+  border-radius: 16px;
+  padding: 14px 8px;
+  background: #1e2027;
+  border: 1px solid transparent;
+  width: 332px;
+
+  &.active {
+    border: 1px solid #cf7b5a33;
+  }
+}

@@ -1,0 +1,17 @@
+.button {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+  color: #cf7b5a;
+  border: none;
+  padding: 10px 16px;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

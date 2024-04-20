@@ -1,0 +1,46 @@
+.wrapper {
+  box-sizing: border-box;
+  height: calc(100% - 32px);
+  padding: 24px;
+  background: #1e2027;
+  border-radius: 16px;
+  min-width: 332px;
+}
+
+.total {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+}
+
+.line {
+  background: #303238;
+  height: 1px;
+  border: none;
+  margin: 24px 0;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.group {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.category {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  color: #8c8988;
+  width: 44px;
+}
+

@@ -1,0 +1,106 @@
+.card {
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #1a1c23;
+  width: 332px;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &.active {
+    border: 1px solid rgba(207, 123, 90, 0.2);
+
+    .deleteBlock {
+      opacity: 1;
+    }
+
+    .name {
+      color: #cf7b5a;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.mainInfo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.photo {
+  width: 56px;
+  border-radius: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+
+  &.active {
+    color: rgba(207, 123, 90, 1);
+  }
+}
+
+.moreInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.infoItem {
+  display: flex;
+  gap: 16px;
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+
+  color: rgba(142, 142, 142, 1);
+}
+
+.deleteBlock {
+  cursor: pointer;
+  position: absolute;
+  z-index: 3;
+  top: -1px;
+  right: -1px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 44, 71, 0.2);
+  border-radius: 0px 0px 0px 15px;
+  background: #4b4e5b1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+
+  &:hover {
+    .deleteIcon {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.deleteIcon {
+  transition: transform 0.3s;
+}
