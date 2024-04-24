@@ -6,9 +6,10 @@ import { IUser } from "../../utils/types.ts";
 
 interface IUsersListProps {
   users: IUser[];
+  setFilteredUsers: (newList: IUser[]) => void;
 }
 
-function UsersList({ users }: IUsersListProps): JSX.Element {
+function UsersList({ users, setFilteredUsers }: IUsersListProps): JSX.Element {
   const [scroll, setScroll] = useState(false);
   const [activeCard, setActiveCard] = useState("");
 
@@ -35,6 +36,11 @@ function UsersList({ users }: IUsersListProps): JSX.Element {
     setActiveCard(id);
   };
 
+  const deleteUser = (id:string) => {
+    const newList = users?.filter((user) => user.login.md5 !== id);
+    setFilteredUsers(newList);
+  };
+
   return (
     <div className={classNames(styles.usersBlock, scroll && styles.showScroll)}>
       <div className={styles.shadow}></div>
@@ -45,6 +51,7 @@ function UsersList({ users }: IUsersListProps): JSX.Element {
               user={user}
               onCardClick={onCardClick}
               activeCard={activeCard}
+              deleteUser={deleteUser}
             />
           </li>
         ))}

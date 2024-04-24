@@ -1,9 +1,59 @@
 import styles from "./counter.module.scss";
-import { useAppSelector } from "../../hooks/store";
+import { useState, useEffect } from "react";
+import { IUsersCounter } from "../../utils/types";
+import { IUser } from "../../utils/types";
 
-function Counter(): JSX.Element {
+interface ICounterProps {
+  users: IUser[];
+}
 
-  const { usersCounter } = useAppSelector((store) => store.users);
+function Counter({ users }: ICounterProps): JSX.Element {
+
+  const [usersCounter, setUsersCounter] = useState<IUsersCounter>({
+    total: 0,
+    fromEleven: 0,
+    fromTwentyOne: 0,
+    fromThirtyOne: 0,
+    fromFortyOne: 0,
+    fromFiftyOne: 0,
+    male: 0,
+    female: 0,
+  });
+
+  useEffect(() => {
+    getUsersCounter();
+  }, [users]);
+
+  function getUsersCounter() {
+    const total = users?.length;
+    const fromEleven = users?.filter(
+      (user) => user.dob.age >= 11 && user.dob.age <= 20
+    ).length;
+    const fromTwentyOne = users?.filter(
+      (user) => user.dob.age >= 21 && user.dob.age <= 30
+    ).length;
+    const fromThirtyOne = users?.filter(
+      (user) => user.dob.age >= 31 && user.dob.age <= 40
+    ).length;
+    const fromFortyOne = users?.filter(
+      (user) => user.dob.age >= 41 && user.dob.age <= 50
+    ).length;
+    const fromFiftyOne = users?.filter((user) => user.dob.age >= 51).length;
+    const male = users?.filter((user) => user.gender === "male").length;
+    const female = users?.filter((user) => user.gender === "female").length;
+
+    setUsersCounter({
+      ...usersCounter,
+      total,
+      fromEleven,
+      fromTwentyOne,
+      fromThirtyOne,
+      fromFortyOne,
+      fromFiftyOne,
+      male,
+      female,
+    });
+  }
 
   return (
     <div className={styles.wrapper}>

@@ -5,17 +5,16 @@ import convertDate from "../../utils/convertDate";
 import formatPhoneNumber from "../../utils/formatPhoneNumber";
 import trimString from "../../utils/trimString";
 import { IUser } from "../../utils/types";
-import { deleteUserFromList } from "../../services/users/reducer";
-import { useAppDispatch } from "../../hooks/store";
 
 interface IUserProps {
   user: IUser;
   activeCard: string;
   onCardClick: (id: string) => void;
+  deleteUser: (id: string) => void;
 }
 
-function UserCard({ user, activeCard, onCardClick }: IUserProps): JSX.Element {
-  const dispatch = useAppDispatch();
+function UserCard({ user, activeCard, onCardClick, deleteUser }: IUserProps): JSX.Element {
+  
   return (
     <div
       className={classNames(
@@ -26,7 +25,7 @@ function UserCard({ user, activeCard, onCardClick }: IUserProps): JSX.Element {
     >
       <div
         className={styles.deleteBlock}
-        onClick={() => dispatch(deleteUserFromList(user.login.md5))}
+        onClick={() => deleteUser(user.login.md5)}
       >
         <img className={styles.deleteIcon} src={DeleteIcon} alt="delete" />
       </div>
