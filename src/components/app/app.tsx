@@ -14,7 +14,7 @@ import Error from "../error/error.tsx";
 
 function App(): JSX.Element {
 
-  const { data: users, isLoading, isError } = useQuery({
+  const { data: users, isFetching, isError, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: getUsers,
   });
@@ -29,18 +29,19 @@ function App(): JSX.Element {
 
   return (
     <div className={styles.wrapper}>
+      <button onClick={() => refetch()}>click</button>
       <header className={styles.header}>
-        <SearchForm setFilteredUsers={setFilteredUsers} users={users} />
+        <SearchForm setFilteredUsers={setFilteredUsers} users={users} refetch={refetch} />
       </header>
-      {isLoading && <Loader />}
-      {!isLoading && !isError && !!filteredUsers?.length && (
+      {isFetching && <Loader />}
+      {!isFetching && !isError && !!filteredUsers?.length && (
         <main className={styles.main}>
           <UsersList users={filteredUsers} setFilteredUsers={setFilteredUsers} />
           <Counter users={filteredUsers} />
         </main>
       )}
-      {!isLoading && !isError && !filteredUsers?.length && <Empty />}
-      {!isLoading && !!isError && <Error />}
+      {!isFetching && !isError && !filteredUsers?.length && <Empty />}
+      {!isFetching && !!isError && <Error />}
     </div>
   );
 }

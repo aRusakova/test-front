@@ -1,32 +1,27 @@
 import styles from "./search-form.module.scss";
 import { Formik, Form, Field } from "formik";
 import RefreshButton from "../refresh-button/refresh-button.tsx";
-import { useQueryClient } from "@tanstack/react-query";
 import { IUser } from "../../utils/types.ts";
 import searchUser from "../../utils/searchUser.ts";
 
 interface ISearchFormProps {
   setFilteredUsers: (newList: IUser[]) => void;
   users?: IUser[],
+  refetch: () => void,
 }
 
 export interface IFormValues {
   [name: string]: string;
 }
 
-function SearchForm({ setFilteredUsers, users }: ISearchFormProps): JSX.Element {
-  const queryClient = useQueryClient();
+function SearchForm({ setFilteredUsers, users, refetch }: ISearchFormProps): JSX.Element {
 
   const submit = (values: IFormValues) => {
     searchUser(values.search, setFilteredUsers, users);
   };
 
   const refreshUsers = async (values: IFormValues) => {
-    await queryClient.invalidateQueries({
-      queryKey: ["users"],
-      refetchActive: true,
-      refetchInactive: false
-    });
+    await refetch();
     values.search = "";
   };
 
