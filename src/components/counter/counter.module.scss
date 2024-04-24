@@ -2,7 +2,7 @@
   box-sizing: border-box;
   height: calc(100% - 32px);
   padding: 24px;
-  background: #1e2027;
+  background: $bgSecondaryColor;
   border-radius: 16px;
   min-width: 332px;
 }
@@ -40,7 +40,7 @@
   font-weight: 500;
   line-height: 20px;
   text-align: left;
-  color: #8c8988;
+  color: $textSecondaryColor;
   width: 44px;
 }
 

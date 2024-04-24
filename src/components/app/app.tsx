@@ -26,6 +26,7 @@ function App(): JSX.Element {
 
   useEffect(() => {
     dispatch(getUsersCounter());
+    console.log(filteredUsers)
   }, [filteredUsers]);
 
   return (

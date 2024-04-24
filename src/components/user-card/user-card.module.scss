@@ -3,7 +3,7 @@
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
-  background: #1a1c23;
+  background: $bgTertiaryColor;
   width: 332px;
   padding: 20px;
   border-radius: 16px;
@@ -15,14 +15,14 @@
   }
 
   &.active {
-    border: 1px solid rgba(207, 123, 90, 0.2);
+    border: 1px solid $bgGreyColor;
 
     .deleteBlock {
       opacity: 1;
     }
 
     .name {
-      color: #cf7b5a;
+      color: $textActiveColor;
     }
 
     &:hover {
@@ -53,10 +53,6 @@
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-
-  &.active {
-    color: rgba(207, 123, 90, 1);
-  }
 }
 
 .moreInfo {
@@ -75,7 +71,7 @@
   font-weight: 500;
   line-height: 20px;
 
-  color: rgba(142, 142, 142, 1);
+  color: $textSecondaryColor;
 }
 
 .deleteBlock {
@@ -86,7 +82,7 @@
   right: -1px;
   width: 44px;
   height: 44px;
-  border: 1px solid rgba(255, 44, 71, 0.2);
+  border: 1px solid $bgRedColor;
   border-radius: 0px 0px 0px 15px;
   background: #4b4e5b1a;
   display: flex;

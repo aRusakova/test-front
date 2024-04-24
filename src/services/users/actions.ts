@@ -7,7 +7,6 @@ export const loadUsers = createAsyncThunk(
     try {
   
       const res = await getUsers();
-      console.log(res)
       return res;
       
     } catch (error) {

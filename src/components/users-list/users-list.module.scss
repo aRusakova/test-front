@@ -29,12 +29,12 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: #e8e8e81a;
+    background: $bgGreyDarkColor;
     border-radius: 100px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #7a7a7a;
+    background: $bgGreyLightColor;
     border-radius: 100px;
   }
 }
