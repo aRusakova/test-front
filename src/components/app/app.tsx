@@ -12,12 +12,9 @@ import SearchForm from "../search-form/search-form.tsx";
 import Empty from "../empty/empty.tsx";
 import Error from "../error/error.tsx";
 
-import formatPhoneNumber from "../../utils/formatPhoneNumber.ts";
-import convertDate from "../../utils/convertDate.ts";
-
 function App(): JSX.Element {
 
-  const { data, isLoading, isError } = useQuery({
+  const { data: users, isLoading, isError } = useQuery({
     queryKey: ["users"],
     queryFn: getUsers,
   });
@@ -25,51 +22,15 @@ function App(): JSX.Element {
   const [filteredUsers, setFilteredUsers] = useState<IUser[]>([]);
 
   useEffect(() => {
-    console.log(data);
-  }, []);
-
-  useEffect(() => {
-    if(data) {
-      setFilteredUsers(data);
+    if(users) {
+      setFilteredUsers(users);
     }
-  }, [data]);
-
-  function searchUser(value: string) {
-    let currentUsers;
-    let newList;
-    if(data) {
-    if (value) {
-      currentUsers = data;
-      newList = currentUsers.filter(
-        (user) =>
-          `${user.name?.first} ${user.name?.last}`
-            .toLowerCase()
-            .includes(value.toLowerCase()) ||
-          user.email.toLowerCase().includes(value.toLowerCase()) ||
-          formatPhoneNumber(user.phone)
-            .toLowerCase()
-            .includes(value.toLowerCase()) ||
-          convertDate(new Date(user.dob?.date))
-            .toLowerCase()
-            .includes(value.toLowerCase()) ||
-          user.location?.city.toLowerCase().includes(value.toLowerCase()) ||
-          user.location?.state.toLowerCase().includes(value.toLowerCase()) ||
-          user.location?.country.toLowerCase().includes(value.toLowerCase())
-      );
-    } else {
-      newList = data;
-    }
-  }
-    if(newList) {
-      setFilteredUsers(newList);
-    }
-
-  }
+  }, [users]);
 
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
-        <SearchForm searchUser={searchUser} />
+        <SearchForm setFilteredUsers={setFilteredUsers} users={users} />
       </header>
       {isLoading && <Loader />}
       {!isLoading && !isError && !!filteredUsers?.length && (
