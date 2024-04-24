@@ -5,15 +5,17 @@ import convertDate from "../../utils/convertDate";
 import formatPhoneNumber from "../../utils/formatPhoneNumber";
 import trimString from "../../utils/trimString";
 import { IUser } from "../../utils/types";
+import { deleteUserFromList } from "../../services/users/reducer";
+import { useAppDispatch } from "../../hooks/store";
 
 interface IUserProps {
   user: IUser;
-  activeCard: string,
-  deleteUser: (id: string) => void;
+  activeCard: string;
   onCardClick: (id: string) => void;
 }
 
-function UserCard({ user, activeCard, onCardClick, deleteUser }: IUserProps): JSX.Element {
+function UserCard({ user, activeCard, onCardClick }: IUserProps): JSX.Element {
+  const dispatch = useAppDispatch();
   return (
     <div
       className={classNames(
@@ -24,7 +26,7 @@ function UserCard({ user, activeCard, onCardClick, deleteUser }: IUserProps): JS
     >
       <div
         className={styles.deleteBlock}
-        onClick={() => deleteUser(user.login.md5)}
+        onClick={() => dispatch(deleteUserFromList(user.login.md5))}
       >
         <img className={styles.deleteIcon} src={DeleteIcon} alt="delete" />
       </div>
@@ -49,14 +51,17 @@ function UserCard({ user, activeCard, onCardClick, deleteUser }: IUserProps): JS
 
         <li className={styles.infoItem}>
           <span className={styles.title}>Birthday</span>
-          <span className={styles.value}>{convertDate(new Date(user.dob.date))}</span>
+          <span className={styles.value}>
+            {convertDate(new Date(user.dob.date))}
+          </span>
         </li>
 
         <li className={styles.infoItem}>
           <span className={styles.title}>Address</span>
           <span className={styles.value}>
             {trimString(
-              `${user.location.state}, ${user.location.city}, ${user.location.country}`, 28
+              `${user.location.state}, ${user.location.city}, ${user.location.country}`,
+              28
             )}
           </span>
         </li>

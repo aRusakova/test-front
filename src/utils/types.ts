@@ -55,11 +55,12 @@ export interface IUser {
 }
 
 export interface IUsersCounter {
-  fromEleven: number;
-  fromTwentyOne: number;
-  fromThirtyOne: number;
-  fromFortyOne: number;
-  fromFiftyOne: number;
-  male: number;
-  female: number;
+  total?: number;
+  fromEleven?: number;
+  fromTwentyOne?: number;
+  fromThirtyOne?: number;
+  fromFortyOne?: number;
+  fromFiftyOne?: number;
+  male?: number;
+  female?: number;
 }

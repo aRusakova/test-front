@@ -3,21 +3,18 @@ import { Formik, Form, Field } from "formik";
 import { useAppDispatch } from "../../hooks/store";
 import { loadUsers } from "../../services/users/actions";
 import RefreshButton from '../refresh-button/refresh-button.tsx';
-
-interface ISearchFormProps {
-  searchUser: (value: string) => void;
-}
+import { searchUser } from "../../services/users/reducer.ts";
 
 export interface IFormValues {
   [name: string]: string;
 }
 
-function SearchForm({searchUser}: ISearchFormProps): JSX.Element {
+function SearchForm(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
   const submit = (values: IFormValues) => {
-    searchUser(values.search);
+    dispatch(searchUser(values.search));
   };
 
   const refreshUsers = (values: IFormValues) => {

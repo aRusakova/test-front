@@ -6,10 +6,9 @@ import { IUser } from "../../utils/types.ts";
 
 interface IUsersListProps {
   users: IUser[];
-  deleteUser: (id: string) => void;
 }
 
-function UsersList({ users, deleteUser }: IUsersListProps): JSX.Element {
+function UsersList({ users }: IUsersListProps): JSX.Element {
   const [scroll, setScroll] = useState(false);
   const [activeCard, setActiveCard] = useState("");
 
@@ -46,7 +45,6 @@ function UsersList({ users, deleteUser }: IUsersListProps): JSX.Element {
               user={user}
               onCardClick={onCardClick}
               activeCard={activeCard}
-              deleteUser={deleteUser}
             />
           </li>
         ))}
