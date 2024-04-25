@@ -6,10 +6,10 @@ import { IUser } from "../../utils/types.ts";
 
 interface IUsersListProps {
   users: IUser[];
-  setFilteredUsers: (newList: IUser[]) => void;
+  deleteUser: (userId: string) => void;
 }
 
-function UsersList({ users, setFilteredUsers }: IUsersListProps): JSX.Element {
+function UsersList({ users, deleteUser }: IUsersListProps): JSX.Element {
   const [scroll, setScroll] = useState(false);
   const [activeCard, setActiveCard] = useState("");
 
@@ -34,11 +34,6 @@ function UsersList({ users, setFilteredUsers }: IUsersListProps): JSX.Element {
 
   const onCardClick = (id: string) => {
     setActiveCard(id);
-  };
-
-  const deleteUser = (id:string) => {
-    const newList = users?.filter((user) => user.login.md5 !== id);
-    setFilteredUsers(newList);
   };
 
   return (
